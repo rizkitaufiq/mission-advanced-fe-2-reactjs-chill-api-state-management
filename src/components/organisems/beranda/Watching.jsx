@@ -1,10 +1,7 @@
 import { useState, useEffect } from "react";
-// import axios from "axios";
-// import { toast } from "react-toastify";
 
-// import watchingMovies from "../../../store/beranda/watchingMovies";
-import { fetchMovies } from "../../../services/beranda/watchingService";
 import { createMovies } from "../../../services/profil/myListService";
+import { fetchBerandaMovies } from "../../../services/beranda/movieService";
 
 import Star from "../../../assets/images/beranda/icon/star.svg";
 import rightArrow from "../../../assets/images/beranda/icon/right-arrow.svg";
@@ -21,7 +18,7 @@ function Watching() {
 
   const fetchMoviesData = async () => {
     try {
-      const data = await fetchMovies();
+      const data = await fetchBerandaMovies();
       // console.log("Fetched Movies:", data);
       const watchingMovies = data.filter(
         (movie) => movie.category === "watching"

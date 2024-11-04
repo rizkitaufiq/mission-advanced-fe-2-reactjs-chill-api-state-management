@@ -3,14 +3,8 @@ import { toast } from "react-toastify";
 import { apiClient } from "../apiClient";
 
 export const fetchMovies = async () => {
-  // try {
   const response = await apiClient.get("/myList");
   return response.data;
-  // } catch (error) {
-  //   toast.error("Failed to fetch movies data");
-  //   console.error("Error fetching movies:", error);
-  //   throw error;
-  // }
 };
 
 export const createMovies = async (movie) => {
@@ -50,14 +44,12 @@ export const deleteMovies = async (movie) => {
 export const updateMovies = async (movieId, id, updatedMovie) => {
   try {
     const responseMyList = await apiClient.put(
-      `/movies/${movieId}/myList/${id}`,
+      `/movies/${id}/myList/${movieId}`,
       updatedMovie
     );
     await apiClient.put(`/movies/${id}`, updatedMovie);
     return responseMyList.data;
-    // return responseMovies.data;
-    // toast.success(`${movie.title} berhasil dihapus dari daftar anda!`);
   } catch (error) {
-    console.error("Gagal menghapus film:", error);
+    console.error("Gagal update film:", error);
   }
 };

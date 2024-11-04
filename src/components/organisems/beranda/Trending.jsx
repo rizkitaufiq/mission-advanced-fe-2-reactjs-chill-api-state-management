@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { fetchMovies } from "../../../services/beranda/watchingService";
+import { fetchBerandaMovies } from "../../../services/beranda/movieService";
 import { createMovies } from "../../../services/profil/myListService";
 
 import rightArrow from "../../../assets/images/beranda/icon/right-arrow.svg";
@@ -17,7 +17,7 @@ const Trending = () => {
 
   const fetchMoviesData = async () => {
     try {
-      const data = await fetchMovies();
+      const data = await fetchBerandaMovies();
       const watchingMovies = data.filter(
         (movie) => movie.category === "trending"
       );

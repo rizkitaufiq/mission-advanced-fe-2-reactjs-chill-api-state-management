@@ -10,8 +10,8 @@ const MyList = () => {
     movies,
     fetchMyList,
     // addMyListItem,
-    // updateMyListItem,
-    // deleteMyListItem,
+    updateMyList,
+    deleteMyList,
   } = useStore();
 
   // const [movies, setMovies] = useState([]);
@@ -25,29 +25,13 @@ const MyList = () => {
     fetchMyList();
   }, [fetchMyList]);
 
-  // const fetchMoviesData = async () => {
-  //   try {
-  //     const data = await fetchMovies();
-  //     // console.log("Fetched Movies:", data);
-  //     setMovies(data);
-  //     setLoading(false);
-  //   } catch (err) {
-  //     console.error("Error fetching movies:", error);
-  //     setError(err.message);
-  //     setLoading(false);
-  //   }
-  // };
-
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error: {error}</p>;
-
   const handleDeleteMovie = async (movie) => {
     const check = movies.find((data) => data.id === movie.id);
     if (
       check &&
       window.confirm("Yakin Menghapus Film Ini dari Daftar List Anda ?")
     ) {
-      await deleteMovies(movie);
+      await deleteMyList(movie);
     }
   };
 
@@ -64,20 +48,17 @@ const MyList = () => {
   const handleUpdateRating = async () => {
     try {
       // const avaregeRating = (selectedMovie.rating + updateRatingValue) / 2;
-      const updatedMovie = await updateMovies(
-        selectedMovie.id,
-        selectedMovie.movieId,
-        { rating: updateRatingValue }
-      );
-      setMovies(
-        movies.map((item) =>
-          item.id === selectedMovie.id ? updatedMovie : item
-        )
-      );
+      await updateMyList(selectedMovie.id, selectedMovie.movieId, {
+        rating: updateRatingValue,
+      });
+      // fetchMyList(
+      //   movies.map((item) =>
+      //     item.id === selectedMovie.id ? updatedMovie : item
+      //   )
+      // );
+      // console.log(fetchMyList);
       closeModal();
-      toast.success(
-        `${selectedMovie.title} berhasil dihapus dari daftar anda!`
-      );
+      toast.success(`${selectedMovie.title} rating berhasil dikirim!`);
     } catch (error) {
       console.error("Error update rating movie:", error);
     }

@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 import {
   fetchMovies,
-  // createMovies,
+  createMovies,
   updateMovies,
   deleteMovies,
 } from "../services/profil/myListService.js";
@@ -20,6 +20,17 @@ export const useStore = create((set) => ({
       return moviesData.data;
     } catch (error) {
       set({ fetchError: error.message, isLoading: false });
+    }
+  },
+
+  addMyList: async (movie) => {
+    try {
+      await createMovies(movie);
+      set((state) => ({ ...state, isLoading: true }));
+      await useStore.getState().fetchMyList();
+    } catch (error) {
+      console.error("Failed to add movie:", error);
+      set({ error: "Failed to add movie" });
     }
   },
 

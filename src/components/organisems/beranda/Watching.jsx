@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 
-import { createMovies } from "../../../services/profil/myListService";
+// import { createMovies } from "../../../services/profil/myListService";
 import { fetchBerandaMovies } from "../../../services/beranda/movieService";
+import { useStore } from "../../../store/store";
 
 import Star from "../../../assets/images/beranda/icon/star.svg";
 import rightArrow from "../../../assets/images/beranda/icon/right-arrow.svg";
 import leftArrow from "../../../assets/images/beranda/icon/left-arrow.svg";
 
 function Watching() {
+  const { addMyList } = useStore();
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -19,7 +21,6 @@ function Watching() {
   const fetchMoviesData = async () => {
     try {
       const data = await fetchBerandaMovies();
-      // console.log("Fetched Movies:", data);
       const watchingMovies = data.filter(
         (movie) => movie.category === "watching"
       );
@@ -36,7 +37,7 @@ function Watching() {
   if (error) return <p className="text-white">Error: {error}</p>;
 
   const handleAddToMyList = async (movie) => {
-    await createMovies(movie);
+    await addMyList(movie);
   };
 
   return (

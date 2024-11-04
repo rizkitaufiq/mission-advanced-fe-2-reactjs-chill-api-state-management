@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 
 import { fetchBerandaMovies } from "../../../services/beranda/movieService";
-import { createMovies } from "../../../services/profil/myListService";
+import { useStore } from "../../../store/store";
 
 import rightArrow from "../../../assets/images/beranda/icon/right-arrow.svg";
 import leftArrow from "../../../assets/images/beranda/icon/left-arrow.svg";
 
 const Realese = () => {
+  const { addMyList } = useStore();
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -31,7 +32,7 @@ const Realese = () => {
   if (error) return <p className="text-white">Error: {error}</p>;
 
   const handleAddToMyList = async (movie) => {
-    await createMovies(movie);
+    await addMyList(movie);
   };
 
   return (

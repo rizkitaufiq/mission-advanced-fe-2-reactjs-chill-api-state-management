@@ -5,14 +5,7 @@ import { toast } from "react-toastify";
 import { useStore } from "../../../store/store";
 
 const MyList = () => {
-  const {
-    // myList,
-    movies,
-    fetchMyList,
-    // addMyListItem,
-    updateMyList,
-    deleteMyList,
-  } = useStore();
+  const { movies, fetchMyList, updateMyList, deleteMyList } = useStore();
 
   // const [movies, setMovies] = useState([]);
   // const [loading, setLoading] = useState(true);
@@ -51,12 +44,6 @@ const MyList = () => {
       await updateMyList(selectedMovie.id, selectedMovie.movieId, {
         rating: updateRatingValue,
       });
-      // fetchMyList(
-      //   movies.map((item) =>
-      //     item.id === selectedMovie.id ? updatedMovie : item
-      //   )
-      // );
-      // console.log(fetchMyList);
       closeModal();
       toast.success(`${selectedMovie.title} rating berhasil dikirim!`);
     } catch (error) {

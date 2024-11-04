@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 
-// import { createMovies } from "../../../services/profil/myListService";
 import { fetchBerandaMovies } from "../../../services/beranda/movieService";
 import { useStore } from "../../../store/store";
 

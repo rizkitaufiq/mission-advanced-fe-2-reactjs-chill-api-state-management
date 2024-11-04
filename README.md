@@ -4,6 +4,7 @@
 - Tailwindcss
 - Tailwindcss line-clamp
 - React Toastify
+- Zustand
 
 # Function
 - Auth
@@ -16,7 +17,8 @@
   - Create Function to My List Data API
 
 - Profil
-  - Delete function to My List Data
+  - Delete function from My List Data
+  - Update rating function from My List Data
 
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
